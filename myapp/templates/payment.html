@@ -1,0 +1,19 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+	<h1 style = "text-align: center;font-family:Fahkwang;color:#576137;">Thankyou {{user}}</h1>
+	<div class = "payment">
+		<img src="{% url 'qr' mobile=mobile amount=amount %}">
+		<h5 style = "font-family:Fahkwang;color:#576137;"> Order_Confirmed Datetime :     <script>
+			var timestamp = Date.now();
+			var d = new Date(timestamp);
+			document.write(d);
+		</script> </h5>
+		<h5 style = "font-family:Fahkwang;color:#576137;" > SCB : 0902482142 Suphisara_Onyourgar__den </h4>
+		<a style  = "background-color:#ffe185;color:#8e844e;border-color:white" href="https://forms.gle/nYxtUz3JEt8mp48cA" class="uk-button uk-button-default">upload your payment</a> 
+		<a style  = "background-color:#ffe185;color:#8e844e;border-color:white" href="http://localhost:8002/" class="uk-button uk-button-default">shop again!!</a>   
+	</div>
+{% endblock content %}
+
+
+ 

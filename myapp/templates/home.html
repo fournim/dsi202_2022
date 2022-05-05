@@ -1,0 +1,28 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+<style>
+.uk-child-width-1-2@s uk-grid-match uk-card uk-card-hover uk-card-body .input .uk-button uk-button-default{
+	background-color : #ffd85e}
+</style>
+	<section class = "home-landing-section">
+			<h1 class = "home-landing-section-info" style = "font-family:Fahkwang;font-size:7vw;"> Onyourgar__den</h1>
+			<h4 class = "home-landing-section-info" style = "font-weight:900"> ให้เราช่วยจัดสวนในห้องของคุณ</h4>
+	</section>
+	<section class = "content-section">
+				<h3 style = "font-family:Fahkwang;color:#576137;font-weight:bold"> Onyourgar__den Product </h3>
+	</section>
+			<div class="uk-child-width-1-2S@s uk-grid-match" uk-grid>
+				{% for product in products %}
+				<div>
+					<div class="uk-card uk-card-hover uk-card-body">
+						<h3 class="uk-card-title"><img src="{{product.imageURL}}" style="width: 300px ;border-radius: 20px;"><br>
+						{{product.name}}</h3>
+						<p>{{product.details}}</p>
+						<p>{{product.price}} baht</p>
+						<button data-product="{{product.id}}" data-action="add" class="uk-button uk-button-default add-btn update-cart" style= "background-color:#ffe185;color:#8e844e;">Add</button>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+{% endblock content %}

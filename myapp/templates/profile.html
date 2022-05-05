@@ -1,0 +1,65 @@
+{% extends 'main.html' %}
+{% block content %}
+{% block site_title %} {% endblock %}
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        text-decoration: none;
+        transition: 0.1s;
+    }
+    
+    body {
+        color: black;
+        background-image: url("https://i.pinimg.com/564x/5e/40/80/5e40805e4b178d6a6f79291dd1c414fe.jpg");
+    }
+    
+    .card {
+        max-width: 350px;
+        margin: 100px auto 0;
+        background-color: white;
+        box-shadow: 0 10px 90px #00000024;
+        text-align: center;
+        font-size: 18px;
+        border-radius: 15px;
+}
+.card .card-header {
+    position: relative;
+    height: 48px;
+}
+.card .card-header .profile-img {
+    width: 130px;
+    height: 130px;
+    border-radius: 1000px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 8px solid #ffd85e;
+    box-shadow: 0 0 20px #00000033;
+}
+
+.card .card-header .profile-img:hover {
+    width: 140px;
+    height: 140px;
+    border: 8px solid #ffe185;
+}
+    .card .card-body {
+        padding: 10px 40px;
+    }
+
+</style>
+
+    <div class="card">
+        <div class="card-header">
+            <img src="https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1223671392?k=20&m=1223671392&s=612x612&w=0&h=lGpj2vWAI3WUT1JeJWm1PRoHT3V15_1pdcTn2szdwQ0=" alt="Profile Image" class="profile-img">
+        </div>
+        <div class="card-body">
+            <h1>hello {{user}}</h1>
+            <form action="{% url 'profile' %}" method="POST">{% csrf_token %}
+                {{ form.as_p}}
+                <input style  = "background-color:#ffe185;color:#8e844e;border-radius: 5px; box-sizing: border-box; padding: 5px 6px;border-color:white;"
+                type="submit" value="submit">
+            </form>
+        </div>
+ {% endblock %}

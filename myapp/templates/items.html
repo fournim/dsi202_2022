@@ -1,0 +1,27 @@
+{% extends 'main.html' %}
+{% block site_title %} All_item | {% endblock %}
+{% load static %}
+{% block content %} 
+<div>
+    <h2>สินค้าทั้งหมด </h2>
+</div>
+<div class="uk-child-width-1-2@s uk-grid-match" uk-grid>
+    {% for i in object_list %}
+    <div>
+        <div class="uk-card uk-card-hover uk-card-body">
+            <h3 class="uk-card-title"><img src="{{i.image.url}}" style="width:200px;border-radius: 20px;"><br>
+            {{i.product}}</h3>
+            <p>{{i.details}}</p>
+            <p>{{i.price}}baht</p>
+            <button data-product={{product.id}} data-action="add" class="uk-button uk-button-default">Add</button>
+            <form action="{% url 'add' %}" method="post">
+                {% csrf_token %} 
+                <input type="hidden" name="pk" value="{{i.pk}}">
+                <input type="hidden" name="title" value="{{i.title}}">
+                <input type="submit" value="add" class="uk-button uk-button-default">
+            </form>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

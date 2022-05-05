@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{% static 'css/uikit.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'main.css' %}"/>
+    <script src="{% static 'js/uikit.min.js' %}"></script>
+    <script src="{% static 'js/uikit-icons.min.js' %}"></script>
+    <title>   {% block site_title %}{% endblock %}Onyourgar__den</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fahkwang&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+
+	<script type="text/javascript">
+		var user = '{{request.user}}'
+
+		function getToken(name) {
+		    var cookieValue = null;
+		    if (document.cookie && document.cookie !== '') {
+		        var cookies = document.cookie.split(';');
+		        for (var i = 0; i < cookies.length; i++) {
+		            var cookie = cookies[i].trim();
+		            // Does this cookie string begin with the name we want?
+		            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+		                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+		                break;
+		            }
+		        }
+		    }
+		    return cookieValue;
+		}
+		var csrftoken = getToken('csrftoken')
+
+		function getCookie(name) {
+		    // Split cookie string and get all individual name=value pairs in an array
+		    var cookieArr = document.cookie.split(";");
+
+		    // Loop through the array elements
+		    for(var i = 0; i < cookieArr.length; i++) {
+		        var cookiePair = cookieArr[i].split("=");
+
+		        /* Removing whitespace at the beginning of the cookie name
+		        and compare it with the given string */
+		        if(name == cookiePair[0].trim()) {
+		            // Decode the cookie value and return
+		            return decodeURIComponent(cookiePair[1]);
+		        }
+		    }
+
+		    // Return null if not found
+		    return null;
+		}
+		var cart = JSON.parse(getCookie('cart'))
+
+		if (cart == undefined){
+			cart = {}
+			console.log('Cart Created!', cart)
+			document.cookie ='cart=' + JSON.stringify(cart) + ";domain=;path=/"
+		}
+		console.log('Cart:', cart)
+	
+	</script>
+
+<style>
+	body {font-family : "Fahkwang", sans-serif;}
+	.buttom {
+	   border: 1px black;
+	   background-color: white;
+	   height:50px;
+	   width:100px;
+	}
+	.nav-bar{
+		background-color:#F1EADD;
+		height : 65px;
+		display: flex;
+		justify-content : flex-start;
+		border-bottom : 1px ;
+		box-shadow : 0px 2px 4px 2px black(0,0,0,0.1);
+	}
+	.nav-bar .info{
+		color : #576137;
+		padding : 20px 10px;
+		display : inline-block;
+		text-decoration : none;
+		display : flex;
+		align-items : center;  
+	}
+	.nav-bar .info-logo .logo{
+		display : inline-block;
+		width: 75px;
+		height: 63px;
+	}
+	.footer {
+		color : #576137;
+		background-color: #F1EADD;
+		text-align: center;
+		padding: 16px;
+	}
+	.home-landing-section{
+			background-image: url("https://i.pinimg.com/564x/2b/5d/fd/2b5dfd03d01f9b1e3747a06353cd92bc.jpg");
+			background-color: white;
+			filter: contrast(100%);
+			-webkit-filter: brigthness(50%);
+			background-size: cover;
+			background-repeat: no-repeat;
+			padding: 100px 60px;
+	}
+	.home-landing-section .home-landing-section-info{
+			font-family : "Fahkwang", sans-serif;
+			font-weight: 900;
+			text-align: center;
+	
+	}
+	.content-section{
+			font-family : "Fahkwang", sans-serif;
+			padding : 32px 16px;
+			text-align: center;
+	}
+	.box-element{
+		box-shadow:hsl(0, 0%, 80%) 0 0 16px;
+		background-color: #fff;
+		border-radius: 4px;
+		padding: 10px;
+	}
+	.cart-row{
+		display: flex;
+		align-items: flex-stretch;
+		padding-bottom: 10px;
+		margin-bottom: 10px;
+		border-bottom: 1px solid #ececec;
+	
+	}
+	.quantity{
+		display: inline-block;
+		font-weight: 700;
+		padding-right:10px;
+		
+	
+	}
+	
+	.chg-quantity{
+		width: 12px;
+		cursor: pointer;
+		display: block;
+		margin-top: 5px;
+		transition:.1s;
+	}
+	
+	.chg-quantity:hover{
+		opacity: .6;
+	}
+	.payment{
+		font-family : "Fahkwang", sans-serif;
+		padding : 32px 16px;
+		text-align: center;
+		margin-top:20px;
+	}    
+</style>
+	</head>
+	<body>
+		<header class = "nav-bar" >
+				<a class="info-logo" href="{% url 'home' %}"><img class = logo src="{% static 'home/logo.png'%}"></a>
+				<a class="info" href="{% url 'cart' %}">cart</a>
+				<a class="info" href="{% url 'profile' %}"> profile</a>
+				<a class="info" href="http://localhost:8002/accounts/signup/">signup</a>
+				<a class="info" href="http://localhost:8002/accounts/login/">login</a>
+				<a class="info" href="http://localhost:8002/accounts/logout/">logout</a>
+				
+		</header>
+		
+		{% block content %}
+		{% endblock %}
+		
+		<footer class="footer">
+			<h6 style = "font-family:Fahkwang" , "color:#576137">ติดตามความเคลื่อนไหวและโปรโมชั่นได้ที่</h6>
+			<p>
+				<a style ="color:#576137" href="#">Instagram</a>
+			</p>
+	  </footer>
+
+
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+	<script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
+</body>
+</html>
