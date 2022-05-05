@@ -1,0 +1,18 @@
+/* fahkwang-regular - thai_latin */
+@font-face {
+    font-family: 'Fahkwang';
+    font-style: normal;
+    font-weight: 700;
+    src: url('../fonts/fahkwang-v14-thai_latin-regular.eot'); /* IE9 Compat Modes */
+    src: local(''),
+         url('fonts/fahkwang-v14-thai_latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('fonts/fahkwang-v14-thai_latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+         url('fonts/fahkwang-v14-thai_latin-regular.woff') format('woff'), /* Modern Browsers */
+         url('fonts/fahkwang-v14-thai_latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+         url('fonts/fahkwang-v14-thai_latin-regular.svg#Fahkwang') format('svg'); /* Legacy iOS */
+  }
+
+  .html,h1,h4 {
+      font-family:"Fahkwang", sans-serif;
+
+  }
